@@ -1,0 +1,1247 @@
+@property --bg-gradient-color-1 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: rgb(35, 35, 35);
+}
+
+@property --bg-gradient-color-2 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: rgb(15, 15, 15);
+}
+
+@property --bg-gradient-color-3 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: rgb(0, 0, 0);
+}
+
+
+:root {
+    /* --brand-blue: oklch(100% 0.00011 271.152); */
+    /* switch colors to oklch */
+    /* Colors */
+    --primary: #3498db;
+    --bg-color: #212121;
+    --inverted-bg-color: #ffffff;
+
+    --nav-bg: #2c3e50;
+
+    --glass-bg: rgba(85, 85, 85, 0.239);
+    --glass-border: rgba(153, 153, 153, 0.273);
+    --indicator-bg: #1a1a1a;
+
+    --text-color: #ffffff;
+    --faded-text-color: #afafaf;
+
+    --inverted-text-color: #000000;
+
+    --glow-color: #ffffffc9;
+    --glow-opacity: 0;
+
+    /* Spacing */
+    --space-sm: 8px;
+    --space-md: 20px;
+    --space-lg: 40px;
+
+    /* Transition Speeds */
+    --trans-sl: 0.5s;
+    --trans-md: 0.3s;
+    --trans-fs: 0.1s;
+
+    /* Layout */
+    --main-padding: 1.25rem;
+
+    /* Border Radius */
+    --border-radius-sm: 0.5rem;
+    --border-radius-lg: 2rem;
+
+    /* Background Gradient Colors */
+    --bg-gradient-color-1: oklch(0.25 0 0);
+    --bg-gradient-color-2: oklch(0.1 0 0);
+    --bg-gradient-color-3: oklch(0.1 0 0);
+
+
+
+
+}
+
+
+/* Dark Mode Colors */
+body.dark-mode {
+    --bg-color: #f8f9fa;
+    --nav-bg: #1a1a1a;
+
+    --inverted-bg-color: #000000;
+
+    --glass-bg: rgba(228, 228, 228, 0.453);
+    --glass-border: rgb(227, 227, 227);
+    --indicator-bg: #ffffff;
+
+    --text-color: #000000;
+    --faded-text-color: #adadad;
+    --inverted-text-color: #ffffff;
+
+
+    --bg-gradient-color-1: oklch(89222222.449% 0.0001 271.152);
+    --bg-gradient-color-2: oklch(94222222.007% 0.00011 271.152);
+    --bg-gradient-color-3: oklch(1002222% 0.00011 271.152);
+
+
+
+}
+
+/* Global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Makes layout math much easier */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: background-color var(--trans-md) ease, color var(--trans-md) ease;
+    background:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"),
+        radial-gradient(circle at 50% 10%, var(--bg-gradient-color-1) 0%, var(--bg-gradient-color-2) 45%, var(--bg-gradient-color-3) 85%);
+
+   
+
+    /* Using 'screen' or 'normal' makes the grain sit ON TOP of the dark colors */
+    background-blend-mode: normal;
+    background-attachment: fixed;
+    /* Keeps the grain still while scrolling */
+
+    transition: --bg-gradient-color-1 0.5s ease,
+        --bg-gradient-color-2 0.5s ease,
+        --bg-gradient-color-3 0.5s ease;
+}
+
+/* Force all interactive elements to inherit from the body */
+button,
+input,
+select,
+textarea,
+optgroup {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+header {
+    padding: var(--main-padding);
+    text-align: center;
+}
+
+main {
+    max-width: 800px;
+    max-width: 48rem;
+
+    margin: 4rem auto;
+    /* Centers the content */
+    padding: var(--main-padding);
+    /* background-color: rgba(255, 255, 255, 0.2); */
+    /* Blurs whatever is behind this element */
+    /* border: 1px solid rgba(255, 255, 255, 0.1); */
+}
+
+/* All top navigation elements */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    /* Spreads the 3 sections out */
+    align-items: center;
+    /* position: relative; */
+    padding: 1rem 2.5%;
+    margin: 0 auto;
+    /* The "auto" on left/right centers the block */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    /* Keeps it on top of other elements */
+    left: 0;
+}
+
+/* Left, center, and right sections */
+.nav-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    /* This vertically centers the logo and text */
+    gap: 0px;
+    /* Modern way to add space between logo and text */
+    text-decoration: none;
+}
+
+.nav-logo {
+    height: 96px;
+    width: auto;
+    /* Maintains aspect ratio */
+    display: block;
+}
+
+.nav-name {
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.nav-center {
+    justify-content: center;
+}
+
+/* Contains work and info buttons and indicator */
+.nav-btns,
+.nav-indicator {
+    padding: 0.25rem;
+    border-radius: 32px;
+    text-align: center;
+    z-index: 10;
+    margin: 0 auto;
+    /* Centers the container itself */
+    background: var(--glass-bg);
+    border-radius: 32px;
+}
+
+
+
+.nav-btns {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    justify-content: center;
+    position: relative;
+    /* Essential: creates the track for the indicator */
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    /* Keeps the nav tight to the buttons */
+
+    transform: scale(1);
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.412);
+    transition: box-shadow 0.3s ease, transform 0.3s ease-in-out;
+}
+
+.nav-btns:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.185);
+
+}
+
+.nav-btns:hover .nav-btn {
+    color: var(--text-color);
+}
+
+/* The Sliding Pill */
+.nav-indicator {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    bottom: 5px;
+    z-index: 1;
+    transition: all 0.6s cubic-bezier(0.23, 0.8, 0.32, 1.1);
+    /* Custom "bounce" ease */
+    box-shadow: none;
+
+    height: calc(100% - 10px);
+    /* Adjust based on padding */
+    pointer-events: none;
+    /* Prevents the pill from blocking clicks */
+
+    overflow: hidden;
+    /* Clips the rotating gradient to the pill shape */
+}
+
+.nav-indicator::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 500%;
+    top: -200%;
+    left: -50%;
+
+    /* Two beams: one at 0% and one at 50% (opposite side) */
+    background: conic-gradient(var(--glass-border) 0%,
+            transparent 25%,
+            var(--glass-border) 50%,
+            transparent 75%,
+            var(--glass-border) 100%);
+
+    animation: rotateBorder 4s linear infinite;
+    animation-play-state: paused;
+    transition: opacity 0.4s ease;
+}
+
+
+/* The "Mask" - This creates the hollow center so it looks like a border */
+.nav-indicator::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: var(--indicator-bg);
+    border-radius: 999px;
+    z-index: 2;
+}
+
+/* The Rotation Script */
+@keyframes rotateBorder {
+    from {
+        transform: rotate(45deg);
+    }
+
+    to {
+        transform: rotate(405deg);
+    }
+}
+
+.nav-btns:hover .nav-indicator::before {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+/* Work and Info Buttons */
+.nav-btn {
+    position: relative;
+    /* Sits on top of the indicator */
+    z-index: 2;
+    padding: 12px 25px;
+    border: none;
+    background: transparent;
+    color: var(--faded-text-color);
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s;
+    text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    transition: text-shadow 0.4s ease, color 0.4s ease;
+}
+
+.nav-btn.active {
+    color: var(--text-color);
+    text-shadow:
+        0 0 0.5rem var(--glow-color),
+        0 0 1rem var(--glow-color),
+        0 0 2rem var(--glow-color);
+}
+
+.nav-right {
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.nav-theme-container {
+    display: flex;
+    align-items: center;
+}
+
+.nav-theme-container span {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    font-size: 0.75rem;
+    font-weight: light;
+    color: var(--faded-text-color);
+}
+
+.nav-theme-container:has(.theme-btn:hover) .nav-theme-text {
+    opacity: 1;
+    transform: translateX(-20px);
+    color: var(--text-color);
+}
+
+.theme-btn:hover .theme-icon {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 15px rgba(255, 255, 255, 0.5)) drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
+
+}
+
+.theme-btn {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    padding: 4px;
+    cursor: pointer;
+    border-radius: var(--border-radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    /* Keeps the image inside the circle */
+    justify-content: flex-end;
+    /* box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.412); */
+    display: none;
+
+    opacity: 1;
+    transition: transform 0.3s ease, opacity 0.3s ease-in-out;
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    gap: 0.5rem;
+}
+
+.theme-btn:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.185);
+    /* background: rgba(255, 255, 255, 0.1); */
+}
+
+
+
+.theme-icon {
+    width: 36px;
+    /* Size of the actual icon image */
+    height: 36px;
+    padding: 4px;
+    opacity: 0.5;
+    object-fit: contain;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+
+
+/* Content Logic */
+.tab-content {
+    display: none;
+    /* Hide everything by default */
+    padding: 0rem 0 8rem 0;
+    animation: fadeIn 0.5s;
+    /* Smooth entrance */
+}
+
+.tab-content.active {
+    display: block;
+    /* Only show the active one */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 40px;
+    /* Space between the two columns */
+    max-width: 1000px;
+    /* Prevents images from becoming massive */
+    margin: 0 auto;
+    /* Centers the layout on the screen */
+    padding: 1rem 20px;
+
+}
+
+
+h2 {
+    font-size: small;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.column {
+    flex: 1;
+    /* Ensures columns stay equal width */
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    /* Space between items in the same column */
+}
+
+/* THE KEY: This starts the second column lower */
+.column.offset {
+    margin-top: 2rem;
+}
+
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    /* Stack image and text vertically */
+    gap: 1rem;
+}
+
+.grid-item img, .mainScene img {
+    width: 100%;
+    /* Fills the column width... */
+    max-width: 450px;
+    /* ...but never bigger than this */
+    height: auto;
+    border-radius: 1rem;
+    display: block;
+    border: 1px solid var(--glass-border);
+    padding: 4px;
+    background: var(--glass-bg);
+
+}
+
+.grid-item p, .body-text-desc {
+    margin-top: 0px;
+    text-align: left;
+    font-weight: 400;
+    font-size: small;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+        /* Stack columns vertically */
+    }
+
+    .column.offset {
+        margin-top: 0;
+        /* Remove the gap on mobile */
+    }
+}
+
+
+.email-action-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: fit-content;
+
+}
+
+.button-group {
+    display: flex;
+    gap: 0px;
+}
+
+.button-group img {
+    opacity: 0.5;
+    width: 1.5rem;
+    /* Set a specific width */
+    height: 1.5rem;
+    /* Set a specific height */
+    /* THE MAGIC PART */
+    object-fit: cover;
+    /* Crops the image to fill the box without stretching */
+    object-position: center;
+    border-radius: 0rem;
+    border: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    background-color: #ffffff00;
+}
+
+#email-text, #email-text2 {
+    opacity: 0.5;
+    font-family: monospace;
+    background: var(--glass-bg);
+    border-radius: 0.5rem 0 0 0.5rem;
+    border: 1px solid var(--glass-border);
+    border-right: none;
+    /* Removes only the bottom border */
+    font-weight: 400;
+    font-size: small;
+    padding: 0.5rem 0.75rem;
+    width: 10.5rem;
+
+}
+
+#copy-btn, #copy-btn2 {
+    border-radius: 0 0.5rem 0.5rem 0;
+    margin-right: 0.5rem;
+    padding: 0 0.25rem;
+}
+
+#mailto-btn {
+    padding: 0 0.5rem 0 0.75rem;
+    gap: 0.25rem;
+    font-weight: 600;
+    font-size: small;
+    color: var(--inverted-text-color);
+    background-color: var(--inverted-bg-color);
+
+}
+
+#mailto-btn img {
+    opacity: 1;
+
+}
+
+h3 {
+    font-weight: 400;
+    font-size: x-small;
+    opacity: 0.5;
+}
+
+.action-btn {
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color);
+    border: 1px solid var(--glass-bg);
+    border-radius: var(--border-radius-sm);
+    padding: 0.25rem;
+
+}
+
+
+
+#mailto-btn:hover {
+    opacity: 0.75;
+}
+
+.action-btn:hover img {
+    opacity: 1;
+}
+
+
+
+.back-items {
+    display: flex;
+    justify-content: space-between;
+    /* This is the magic line */
+    padding: 2rem;
+}
+
+
+.back-items-text {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.back-items-text .work-title {
+    font-weight: 500;
+    font-size: 1.75rem;
+}
+
+.scene-container {
+    position: relative;
+background-color: var(--glass-bg, rgb(85, 85, 85));
+    border: 1px solid var(--glass-border);
+    border-radius: 1.25rem;
+    padding: 0.25rem;
+        backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  justify-content: center;
+  display: grid;
+  grid-template-areas: "overlay"; /* Both menus occupy the same "spot" */
+  place-items: center;
+ 
+min-height: 200px;
+min-width: 200px;
+  transition: all 0.5 ease;
+  background-color: #a7292900;
+border-color: #00000000;
+
+}
+
+.scene-outer-border {
+    background-color: var(--glass-bg, rgb(85, 85, 85));
+    border: 1px solid var(--glass-border);
+     border-radius: 0.5rem;
+    margin: 0.5rem;
+}
+.scene {
+        background-color: var(--glass-bg);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border: 1px solid var(--glass-border);
+    border-radius: 1rem;
+
+
+
+  transition: all 0.5 ease;
+
+}
+
+/* Background items */
+.back-items{
+}
+
+.hero-image-wrapper {
+    display: flex;
+    justify-content: center;
+padding: 0 15rem ;
+    height: 24rem;
+        overflow: hidden;
+
+}
+
+/* The Image */
+.hero-image {
+    height: 48rem;
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+/* --- THE TRANSITION STATE --- */
+
+.is-open .back-items {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+}
+
+.is-open .new-menu, .is-open .new-menu-2 {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+
+    @starting-style {
+        opacity: 0;
+    }
+}
+
+.is-open .hero-image {
+    /* Moves up slightly and gets bigger */
+    transform: translateY(-50px) scale(1.5);
+}
+
+.scene-container:has(.is-open .hero-image){
+background-color: #00000000;
+border-color: #00000000;
+
+}
+
+/* This is stronger than a flat .scene selector */
+.scene.is-open {
+  background-color: #ff313100; 
+  border-color: #00000000;
+
+}
+
+
+.scene button {
+    all: unset;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.enter-arrow {
+    max-width: 1.5rem;
+}
+
+.work-descs-container span, #menuContainerNew .mainScene span , #menuContainerNew2 .mainScene span{
+    font-size: 0.75rem;
+    position: relative;
+    top: -0.25rem;
+}
+
+.back-items .work-desc-company {
+    opacity: 0.66;
+
+}
+
+.back-items .work-desc-desc {
+    opacity: 0.33;
+
+}
+
+
+.scene button:hover {
+    opacity: 0.5;
+}
+
+
+
+.scene {
+grid-area: overlay;            /* Stacks them on top of each other */
+  width: 100%;                   /* Takes full width of parent naturally */
+
+  
+}
+
+/* The "Hidden" State */
+.scene.hidden {
+opacity: 0;
+  pointer-events: none;
+  transition: all 0.5 ease;
+}
+
+.scene-container:has(#menuContainer.scene), .scene-container:has(#menuContainer2.scene) 
+ {
+      /* animation: slideIn 0.3s forwards; */
+  transition: all 0.5 ease;
+  
+  align-items: flex-start; /* This pulls children to the top/start */
+justify-content: flex-start;
+
+}
+
+
+.scene-container:has(#menuContainerNew.scene:not(.hidden)), .scene-container:has(#menuContainerNew2.scene:not(.hidden)) 
+ {
+
+   backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+      /* animation: slideIn 0.3s forwards; */
+        transition: all 0.5 ease;
+
+}
+
+.scene-container:has(#menuContainerNew.scene),.scene-container:has(#menuContainerNew2.scene) 
+ {
+/* border-color: #00000000; */
+align-items: flex-start; /* This pulls children to the top/start */
+justify-content: flex-start;
+
+}
+#menuContainerNew.scene,#menuContainerNew2.scene 
+ {
+    display: flex;
+    flex-direction: column;
+/* height: 50rem; */
+background-color: #a7292900;
+border: none;
+
+}
+
+#menuContainerNew.scene .text-items, #menuContainerNew2.scene .text-items 
+ {
+     display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+
+#menuContainerNew.scene .photo-stack,#menuContainerNew2.scene .photo-stack 
+ {
+  display: grid;
+  grid-template-areas: "overlay"; /* Define one area */
+justify-items: center; 
+  
+  /* Vertical alignment remains 'stretch' (default) */
+  align-items: start;
+}
+
+#menuContainerNew.scene .photo-stack img, #menuContainerNew2.scene .photo-stack img
+{
+
+  grid-area: overlay; /* Every image goes into the same spot */
+}
+
+#menuContainerNew.scene .photo-stack .echo {
+
+    padding: 4.5rem 4rem;
+
+width: 70%
+}
+#menuContainerNew2.scene .photo-stack .echo{
+        padding: 2.5rem 2rem 4.5rem 1rem;
+        width: 70%
+
+}
+#menuContainerNew.scene .photo-stack .frame, #menuContainerNew2.scene .photo-stack .frame{
+
+width: 33rem;
+opacity: 0.75;
+}
+
+#menuContainerNew.scene .text-items .title,#menuContainerNew2.scene .text-items .title{
+
+
+    font-weight: 500;
+    font-size: 2.25rem;
+        bottom: -9.25rem;
+background: linear-gradient(
+    180deg, 
+    var(--text-color) 50%,   /* Starts at the bottom-left */
+    #86e3cd00 100%  /* Ends at the top-right */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#menuContainerNew.scene .text-items .desc,#menuContainerNew2.scene .text-items .desc{
+
+
+  font-weight: 400;
+    font-size: 0.75rem;
+    opacity: 0.5;
+    padding-bottom: 3rem;
+    
+}
+
+
+#menuContainerNew.scene .back-btn,#menuContainerNew2.scene .back-btn{
+
+    margin: 0.5rem;
+     background: transparent;
+    padding: 4px;
+    cursor: pointer;
+    border-radius: var(--border-radius-lg);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+padding: 0.5rem 1rem;
+align-self: flex-start;    /* Keeps the image inside the circle */
+    /* box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.412); */
+  font-size: 0.75rem;
+    font-weight: 500;
+transition: all 0.3s ease-in-out;
+    opacity: 1;
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    gap: 0.5rem;
+
+}
+
+
+
+#menuContainerNew.scene:not(.hidden) .back-btn:hover ,#menuContainerNew2.scene:not(.hidden) .back-btn:hover {
+
+    /* transform: scale(1.1); */
+        background-color: var(--glass-border);
+
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.185);
+    /* background: rgba(255, 255, 255, 0.1); */
+}
+
+
+#menuContainerNew.scene .back-arrow,#menuContainerNew2.scene .back-arrow{
+
+        max-width: 0.75rem;
+transform: rotate(180deg); /* Rotates 45 degrees clockwise */
+}
+
+body.dark-mode:has(#menuContainerNew.scene:not(.hidden)):has(#work.tab-content.active)
+ {
+         --bg-gradient-color-1: oklch(92.6% 0.12957 149.149);
+
+
+}
+body:not(.dark-mode):has(#menuContainerNew.scene:not(.hidden)):has(#work.tab-content.active) {
+
+         --bg-gradient-color-1: oklch(44.92% 0.14452 144.261);
+
+
+}
+
+
+
+body.dark-mode:has(#menuContainerNew2.scene:not(.hidden)):has(#work.tab-content.active) 
+ {
+         --bg-gradient-color-1: oklch(86.616% 0.07833 47.344);
+
+
+}
+body:not(.dark-mode):has(#menuContainerNew2.scene:not(.hidden)):has(#work.tab-content.active) {
+
+         --bg-gradient-color-1: oklch(36.955% 0.10026 48.224);
+
+
+}
+#menuContainer, #menuContainer2{
+    margin-top: 4rem;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-10px); }
+}
+
+ .photo-stack {
+opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+
+ }
+
+ .photo-stack.hidden {
+opacity: 0;
+  visibility: hidden; /* This hides it from the layout flow better than opacity alone */
+ }
+
+
+
+
+.scene{
+transform: translateY(0);
+  opacity: 1;
+    transition: all 0.6s ease;
+
+}
+
+.scene.hidden{
+transform: translateY(10px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+
+/* 1. Make the entire nav container "click-through" */
+nav {
+  pointer-events: none;
+  
+}
+
+/* 2. Re-enable clicking for the actual buttons inside the nav */
+.nav-btns, 
+.nav-theme-container {
+  pointer-events: auto;
+}
+
+#menuContainerNew .mainScene, #menuContainerNew2 .mainScene {
+
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    justify-content: start;
+align-items: flex-start; /* Aligns items to the left */
+
+}
+#menuContainerNew .mainScene span, #menuContainerNew2 .mainScene span {
+
+        font-size: 1rem;
+    padding: 2rem 6rem 0rem 6rem;
+    
+}
+
+#menuContainerNew .mainScene span:nth-child(n+2),#menuContainerNew2 .mainScene span:nth-child(n+2) {
+
+    padding: 8rem 12rem 0rem 12rem;
+        padding: 2rem 6rem 0rem 6rem;
+
+}
+#menuContainerNew .mainScene img ,#menuContainerNew2 .mainScene img {
+
+margin: 2rem auto;}
+
+#menuContainerNew .mainScene p,#menuContainerNew2 .mainScene p {
+
+        font-size: 0.75rem;
+    padding:  0rem 6rem 0rem 6rem;
+
+
+}
+
+#menuContainer2 {
+    margin-top: 40rem;
+}
+
+
+#horizonIcon {
+
+    height: 32rem;
+}
+
+.scene-container {
+    max-height: 500px;
+}
+
+
+
+.content-container {
+
+    padding-bottom: 32rem;
+}
+
+/* .content-container:has(.scene:not(.hidden)) {
+
+    padding-bottom: 172rem;
+} */
+
+
+.content-container:has(#info.tab-content.active) {
+        padding-bottom: 1rem;
+
+}
+
+.content-container:has(#menuContainerNew.scene:not(.hidden)):has(#work.tab-content.active)  {
+        padding-bottom: 170rem;
+
+}
+
+.content-container:has(#menuContainerNew2.scene:not(.hidden)):has(#work.tab-content.active)  {
+        padding-bottom: 115rem;
+
+}
+
+
+
+/* 3. Footer Styling */
+.site-footer {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 40px 0 20px 0; /* Top, Right, Bottom, Left shorthand */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around; /* Spreads sections out evenly */
+  flex-wrap: wrap; /* Allows sections to stack on mobile */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  padding: 20px;
+  min-width: 200px;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #333;
+  margin-top: 20px;
+  padding-top: 20px;
+  font-weight: 800;
+  font-size: 0.75rem;
+}
+
+.footer-section-bottom h4 {
+     margin-bottom: 1rem;
+     margin-top: 1rem;
+}
+.footer-section-bottom img {
+        padding: 4px;
+
+}
+
+.footer-text{
+    display: flex;
+    flex-direction: column;
+    background-color: none;
+    color: var(--text-color);
+        text-decoration: none;
+        cursor:pointer;
+border: none;
+background: none;
+transition: opacity 0.3s ease-in-out; /* The magic line */font-size: small;
+font-weight: 400;
+}
+
+.footer-text:hover{
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+.nav-left {
+    display: none;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#menuContainerNew.scene .photo-stack .frame{
+width: 16rem;
+
+}
+ #menuContainerNew2.scene .photo-stack .frame {
+width: 80vw;
+
+}
+#menuContainerNew.scene .photo-stack .echo {
+    padding: 2.25rem 1.5rem;
+
+}
+
+
+#menuContainerNew2.scene .photo-stack .echo {
+    padding: 1.25rem 0.5rem 4.5rem 0.25rem;
+}
+
+#menuContainerNew2 .mainScene span, #menuContainerNew .mainScene span {
+ 
+    padding: 0rem 2rem 0rem 2rem;
+}
+#menuContainerNew .mainScene span:nth-child(n+2), #menuContainerNew2 .mainScene span:nth-child(n+2) 
+{
+    padding: 2rem 2rem 0rem 2rem;
+}
+#menuContainerNew .mainScene p, #menuContainerNew2 .mainScene p {
+    padding: 0rem 2rem 0rem 2rem;
+}
+
+.hero-image-wrapper {
+    padding: 0 1rem;
+}
+.hero-image {
+    height: 32rem;
+}
+
+#horizonIcon {
+    height: 60vw;
+}
+
+#menuContainer2 .hero-image-wrapper {
+    height: 50vw;
+    
+}
+
+#menuContainerNew.scene .photo-stack .echo {
+    width: 15rem;
+}
+#menuContainerNew2.scene .photo-stack .echo {
+width: 70vw;
+padding-left: 0.25rem;}
+
+#menuContainer2 {
+    margin-top: 45rem;
+}
+
+
+.content-container:has(#menuContainerNew.scene:not(.hidden)):has(#work.tab-content.active)  {
+        padding-bottom: 200rem;
+
+}
+
+.content-container:has(#menuContainerNew2.scene:not(.hidden)):has(#work.tab-content.active)  {
+        padding-bottom: 135rem;
+
+}
+
+
+}
+
+.photo-stack {
+    padding-bottom: 4rem;
+}
+
+
+
+.scene.hidden:has(.mainScene) .mainScene  {
+    display: none;
+
+}
+
+
+.scene:has(.mainScene) .mainScene {
+    display: flex;
+
+}
+
+/* initial set pill width */
+.nav-indicator{
+    width: 89px;
+}
